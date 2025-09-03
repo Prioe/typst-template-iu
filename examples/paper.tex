@@ -1,0 +1,350 @@
+% Original template created by Markus Haug <mh@haugmarkus.com>
+% https://github.com/markushaug/iu-latex-template
+% Credits: Markus Haug and the template contributors.
+% Feel free to share and modify this template, but please give credit where it's due.
+
+% Pandoc template created by Michael Albertz <michael@prio.one>
+
+\PassOptionsToPackage{autostyle}{csquotes}
+
+\documentclass[11pt, a4paper, oneside, ngerman]{article}
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{3}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[nopatch=footnote]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[style=apa,backend=biber,pagetracker,apamaxprtauth=20]{biblatex}
+\usepackage[]{csquotes}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+%%
+%% Pakete & Formalia
+%%
+\usepackage[ngerman]{babel} % neue deutsche Trennungsregeln, etc
+\usepackage{setspace} % Abstände zwischen Absätzen
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry} % Seitenränder
+\setstretch{1.5} % 1,5 Zeilenabstand
+\usepackage{lipsum}  % Dummy-Texte
+\usepackage{titlesec} % define size for section headings
+ % Abkürzungsverzeichnis
+
+%% Schriftarten und -größen
+\usepackage{fontspec}
+\setmainfont{Arial} % Hauptfont Arial (lualatex oder xelatex benötigt)
+\setmonofont{DejaVu Sans Mono} % Monospace Font
+\titleformat{\section}{\normalfont\fontsize{12pt}{1.5}\bfseries}{\thesection}{1em}{} % Überschriften 1pt größer
+\titleformat{\subsection}{\normalfont\fontsize{12pt}{1.5}\bfseries}{\thesubsection}{1em}{} % Überschriften 1pt größer
+\titleformat{\subsubsection}{\normalfont\fontsize{12pt}{1.5}\bfseries}{\thesubsubsection}{1em}{} % Überschriften 1pt größer
+\def\UrlFont{\rm} % Print URLs not in Typewriter Font
+\renewcommand{\footnotesize}{\fontsize{10pt}{1.5pt}\selectfont}
+
+\newcommand\iuparsep{6pt} % Abstand zwischen Absätzen
+% automatischens Einrücken von Absätzen verhindern
+\usepackage{changepage}
+\setlength{\parindent}{0pt}
+% 6pt Abstand nur zwischen Absätzen
+\setlength{\parskip}{\iuparsep}{}
+\setlength\bibitemsep{\iuparsep}
+
+% Leerseite ohne Seitennummer, nächste Seite rechts
+\newcommand{\blankpage}{
+ \clearpage{\pagestyle{empty}\cleardoublepage}
+}
+
+% Abbildungen
+\usepackage[labelsep=space,skip=\iuparsep]{caption} % Leerzeichen zwischen Label und Caption
+\addto\captionsngerman{\renewcommand{\figurename}{Abb.}} % Abkürzung für Abbildung
+\addto\captionsngerman{\renewcommand{\tablename}{Tab.}} % Abkürzung für Tabelle
+
+\usepackage{etoolbox}
+\AfterEndEnvironment{figure}{\vspace{-0.5\baselineskip}} % Abstand nach Abbildung, kompensiert für 1.5 Zeilenabstand
+
+% Verbatim-Umgebung
+\usepackage{fancyvrb}
+% remove extra space above and below verbatim and set to iuparsep
+\fvset{vspace=\dimexpr\iuparsep - 0.5\baselineskip\relax}
+
+% center images and tables
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
+
+% Add command to add souce captions
+\newcommand{\sourcecaption}[1]{%
+  \vspace*{-\textfloatsep+\medskipamount}%
+  \noindent\begin{minipage}{\linewidth}
+    \centering
+    Quelle: #1
+  \end{minipage}%
+}
+
+%% Informationen für die PDF-Datei
+\hypersetup{
+ hidelinks,
+ pdfauthor={Michael Albertz},
+ pdftitle={IWSM01 Project Title}, %% Titel der PDF-Datei
+  pdfsubject={Hausarbeit - IWSM01 Project Title},
+ pdfkeywords={},
+ pdfcreator={pandoc},
+ pdfproducer={pandoc - Template by Michael Albertz (based on lualatex Template by Markus Haug)},
+}
+
+%%
+%% Bibliographie & Sondereinstellungen
+%%
+% defined in pandoc-header
+% \usepackage[backend=biber, style=apa, pagetracker, apamaxprtauth=20]{biblatex}
+
+% TODO Remove Comma after second to last author and ampersand
+% https://tex.stackexchange.com/questions/670888/biblatex-apa-7-modification
+\makeatletter
+\renewcommand*{\apablx@ifrevnameappcomma}{\@secondoftwo}
+\makeatother
+
+\DefineBibliographyExtras{ngerman}{%
+  \renewcommand*{\finalandcomma}{}%
+}
+% IU doesn't follow APA in this case
+\AtEveryBibitem{%
+  \clearfield{urlyear}%
+}
+
+% Blockzitate haben 1,27cm Einrückung links
+\renewcommand{\quote}{\list{}{\leftmargin=1.27cm\rightmargin=0pt\topsep=0pt}\item\relax}
+
+%% Bibliographie einbinden
+\addbibresource{references.bib}
+
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Dokument
+%% ++++++++++++++++++++++++++++++++++++++++++
+\begin{document}
+
+\pagenumbering{Roman} % Uppercase Roman numerals
+% \pagenumbering{gobble} % switch off page numbering
+
+\def\usesf{}
+\let\usesf\sffamily % diese Zeile auskommentieren für normalen TeX Font
+
+\setlength{\unitlength}{1pt}
+
+\begin{titlepage}
+%\vspace*{-39pt}\hspace*{300pt}\includegraphics[width=.27\paperwidth]{logos/IOSB}
+\vspace{-39pt}\hspace*{300pt}\includegraphics[width=.21\paperwidth]{../template/iu-logo.png}
+
+\begin{center}
+\hbox{}
+\vfill
+{\usesf}
+{\huge\bfseries IWSM01 Project Title \par}
+\vskip 1.8cm
+Hausarbeit\\[2mm]
+\vskip 1cm
+
+{\large\bfseries Michael Albertz (32103348)\\}
+\vskip 1.2cm
+Informatik (B.Sc.)\\
+% im Modul\\
+IWSM01\\
+\today % TODO: Check Datum
+\vskip 3cm
+\begin{tabular}{p{3cm}l}
+Tutorin: & TBD \\
+\end{tabular}
+\vfill
+\end{center}
+
+\end{titlepage}
+\newpage
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Verzeichnisse
+%% ++++++++++++++++++++++++++++++++++++++++++
+\stepcounter{page}
+\setcounter{tocdepth}{3}
+\tableofcontents % Inhaltsverzeichnis
+
+
+
+ % Abkürzungen
+
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Hauptteil
+%% ++++++++++++++++++++++++++++++++++++++++++
+\blankpage
+\pagenumbering{arabic}
+
+\section{Einleitung}\label{einleitung}
+
+\subsection{Problemstellung}\label{problemstellung}
+
+{[}Beschreibung der Problemstellung und des Kontexts{]}
+
+\subsection{Zielsetzung}\label{zielsetzung}
+
+{[}Darstellung der Ziele und des gewünschten Ergebnisses{]}
+
+\subsection{Aufbau der Arbeit}\label{aufbau-der-arbeit}
+
+Diese Arbeit gliedert sich wie folgt: {[}Kurze Übersicht über die
+Struktur der Arbeit{]}
+
+\section{Hauptteil}\label{hauptteil}
+
+\subsection{Theoretische Grundlagen}\label{theoretische-grundlagen}
+
+{[}Theoretischer Hintergrund und Grundlagen{]}
+
+\subsection{Methodik}\label{methodik}
+
+{[}Beschreibung der verwendeten Methoden und Vorgehensweise{]}
+
+\subsection{Analyse und Diskussion}\label{analyse-und-diskussion}
+
+{[}Hauptanalyse, Ergebnisse und Diskussion{]}
+
+\subsection{Bewertung}\label{bewertung}
+
+{[}Bewertung der Ergebnisse und kritische Betrachtung{]}
+
+\section{Schluss}\label{schluss}
+
+\subsection{Zusammenfassung}\label{zusammenfassung}
+
+{[}Zusammenfassung der wichtigsten Erkenntnisse und Ergebnisse{]}
+
+\subsection{Fazit}\label{fazit}
+
+{[}Fazit und Schlussfolgerungen{]}
+
+\subsection{Ausblick}\label{ausblick}
+
+{[}Ausblick auf zukünftige Entwicklungen und mögliche
+Forschungsrichtungen{]}
+
+\pagebreak
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Literatur
+%% ++++++++++++++++++++++++++++++++++++++++++
+\blankpage
+
+\phantomsection
+% set bibliography name
+\renewcommand{\bibname}{Literaturverzeichnis}
+\addcontentsline{toc}{section}{\bibname}
+% \nocite{*} % nur angeben, wenn auch nicht im Text zitierte Quellen 
+
+\begin{flushleft}
+
+\printbibliography[title=\bibname]
+\end{flushleft}
+
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Anhang
+%% ++++++++++++++++++++++++++++++++++++++++++
+
+\blankpage
+\appendix
+\section{Anhang}\label{anhang}
+
+\subsection{Zusätzliche Materialien}\label{zusuxe4tzliche-materialien}
+
+{[}Hier können zusätzliche Materialien wie Code-Beispiele, Screenshots,
+Diagramme oder andere unterstützende Dokumente eingefügt werden{]}
+
+\subsection{Quellenverzeichnis}\label{quellenverzeichnis}
+
+{[}Falls notwendig, können hier weitere Quellen oder Referenzen
+aufgeführt werden{]}
+
+\end{document}
+
+
