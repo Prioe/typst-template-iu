@@ -10,12 +10,11 @@
   course: "IWSM01",
   tutor: "TBD",
   date: datetime.today(),
-  logo: none,
+  logo: "iu-logo.png",
   show-outline: true,
   bibliography-file: none,
   body,
 ) = {
-
   // Document metadata
   set document(title: title, author: author)
   set text(lang: "de")
@@ -24,22 +23,23 @@
   let main-font = "Liberation Sans"
   let body-size = 11pt
   let heading-size = 12pt
-  
+
   // Colors
   let text-color = black
-  
+
   // Basic text setup
   set text(
     font: main-font,
     size: body-size,
-    fill: text-color
+    fill: text-color,
+    bottom-edge: "descender",
   )
 
   // Paragraph formatting (no indentation, 6pt spacing)
   set par(
     justify: true,
-    leading: 0.65em,  // 1.5 line spacing equivalent
-    spacing: 6pt,     // 6pt between paragraphs as in LaTeX
+    leading: 11pt, // 1.5 line spacing equivalent
+    spacing: 1em + 6pt, // 6pt between paragraphs as in LaTeX
     first-line-indent: 0pt,
   )
 
@@ -47,57 +47,39 @@
   set page(
     paper: "a4",
     margin: (top: 2cm, left: 2cm, right: 2cm, bottom: 2cm),
-    numbering: none,  // Will be set per section
+    numbering: none, // Will be set per section
     number-align: center,
   )
 
   // Heading configuration (12pt, bold)
-  set heading(numbering: "1.")
-  show heading: set text(
-    font: main-font,
-    size: heading-size,
-    weight: "bold"
-  )
-  
-  // Spacing for headings
-  show heading.where(level: 1): it => {
-    pagebreak(weak: true)
-    v(1em)
+  set heading(numbering: "1.1")
+  show heading: it => {
+    set text(
+      font: main-font,
+      size: heading-size,
+      weight: "bold",
+    )
+    show: block.with(above: 1.5em, below: 1.5em, sticky: true)
     it
-    v(0.5em)
-  }
-  
-  show heading.where(level: 2): it => {
-    v(1em)
-    it
-    v(0.3em)
-  }
-  
-  show heading.where(level: 3): it => {
-    v(0.8em)
-    it
-    v(0.3em)
   }
 
   // Figure and table captions (German abbreviations)
   set figure(numbering: "1")
-  show figure.where(kind: image): set figure.caption(separator: [: ])
-  show figure.where(kind: table): set figure.caption(separator: [: ])
-  
-  // German figure names
-  show figure.where(kind: image): it => {
-    show figure.caption: cap => [
-      #text(weight: "bold")[Abb. #it.counter.display(it.numbering)]: #cap.body
-    ]
-    it
-  }
-  
-  show figure.where(kind: table): it => {
-    show figure.caption: cap => [
-      #text(weight: "bold")[Tab. #it.counter.display(it.numbering)]: #cap.body
-    ]
-    it
-  }
+  show figure.where(kind: image): set figure.caption(
+    position: top,
+    separator: [ ],
+  )
+  show figure.where(kind: image): set figure(supplement: [Abb.])
+  show figure.where(kind: table): set figure.caption(
+    position: top,
+    separator: [ ],
+  )
+  show figure.where(kind: table): set figure(supplement: [Tab.])
+
+  // show outline: set outline(indent: 0em)
+  set outline(indent: auto)
+  set outline.entry(fill: repeat([.], gap: 0.25em))
+  // set outline.entry(fill: line(length: 100%))
 
   // Block quotes with 1.27cm left indentation
   show quote.where(block: true): it => {
@@ -107,7 +89,7 @@
   // Title page with Roman numbering
   counter(page).update(1)
   set page(numbering: "I")
-  
+
   iu-titlepage(
     title: title,
     subtitle: subtitle,
@@ -120,15 +102,21 @@
     logo: logo,
   )
 
-  // Table of contents with Roman numbering
-  if show-outline {
-    pagebreak()
-    outline(
-      title: [Inhaltsverzeichnis],
-      indent: auto,
-    )
-    pagebreak()
-  }
+  pagebreak()
+  outline(
+    title: [Inhaltsverzeichnis],
+  )
+  pagebreak()
+  outline(
+    title: [#heading(outlined: true)[Abbildungsverzeichnis]],
+    target: figure.where(kind: image),
+  )
+  pagebreak()
+  outline(
+    title: [#heading(outlined: true)[Tabellenverzeichnis]],
+    target: figure.where(kind: table),
+  )
+  pagebreak()
 
   // Main content with Arabic numbering
   counter(page).update(1)
