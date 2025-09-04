@@ -141,7 +141,7 @@
     pagebreak()
     set heading(numbering: none)
     heading([Literaturverzeichnis], level: 1)
-    bibliography(bibliography-file, style: "apa.csl", title: none)
+    bibliography(bibliography-file, style: "apa-iu.csl", title: none)
   }
 }
 

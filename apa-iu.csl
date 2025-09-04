@@ -363,10 +363,11 @@
               <choose>
                 <if type="article-magazine article-newspaper broadcast collection document event interview motion_picture pamphlet performance personal_communication post post-weblog song speech webpage" match="any">
                   <!-- Many video and audio examples in manual give full dates. Err on the side of too much information. -->
-                  <date variable="issued">
-                    <date-part name="month"/>
-                    <date-part name="day" prefix=" "/>
-                  </date>
+                  <!-- FIXME: This section causes unnecessary delimiters being rendered, see: https://github.com/typst/hayagriva/issues/246 -->
+                  <!-- <date variable="issued"> -->
+                  <!--   <date-part name="month"/> -->
+                  <!--   <date-part name="day" prefix=" "/> -->
+                  <!-- </date> -->
                 </if>
                 <else-if type="paper-conference">
                   <!-- Capture 'speech' stored as 'paper-conference' -->
