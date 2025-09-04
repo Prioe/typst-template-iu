@@ -140,11 +140,23 @@
   }
 }
 
-// Source caption command (equivalent to LaTeX \sourcecaption)
-#let source-caption(source) = {
-  v(-0.5em)
-  align(center)[
-    #text(size: 0.9em, style: "italic")[Quelle: #source]
-  ]
-  v(0.3em)
+#let iu-figure(
+  body,
+  caption: none,
+  source-caption: none,
+) = {
+  figure(
+    {
+      body
+      if source-caption != none {
+        v(-0.65em)
+        align(
+          center,
+          source-caption,
+        )
+      }
+    },
+    // kind: "iu-fig",
+    caption: caption,
+  )
 }
