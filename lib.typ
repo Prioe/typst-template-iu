@@ -38,7 +38,7 @@
   // Paragraph formatting (no indentation, 6pt spacing)
   set par(
     justify: true,
-    leading: 11pt, // 1.5 line spacing equivalent
+    leading: 0.95em, // 1.5 line spacing equivalent
     spacing: 1em + 6pt, // 6pt between paragraphs as in LaTeX
     first-line-indent: 0pt,
   )
@@ -65,16 +65,23 @@
 
   // Figure and table captions (German abbreviations)
   set figure(numbering: "1")
-  show figure.where(kind: image): set figure.caption(
-    position: top,
-    separator: [ ],
-  )
-  show figure.where(kind: image): set figure(supplement: [Abb.])
-  show figure.where(kind: table): set figure.caption(
-    position: top,
-    separator: [ ],
-  )
+  set figure.caption(position: top, separator: [ ])
+
+  show figure.where(kind: image): set figure(supplement: [Abb.], kind: "iu-fig")
+  show figure.where(kind: raw): set figure(supplement: [Abb.], kind: "iu-fig")
   show figure.where(kind: table): set figure(supplement: [Tab.])
+
+  // Default table style
+  show table.cell.where(y: 0): strong
+  set table(
+    align: left,
+    inset: (x: 8pt, y: 5pt),
+    stroke: (_, y) => (
+      top: if y <= 1 { 1pt } else { 0pt },
+      bottom: 1pt,
+    ),
+  )
+
 
   // show outline: set outline(indent: 0em)
   set outline(indent: auto)
@@ -109,7 +116,7 @@
   pagebreak()
   outline(
     title: [#heading(outlined: true)[Abbildungsverzeichnis]],
-    target: figure.where(kind: image),
+    target: figure.where(kind: "iu-fig"),
   )
   pagebreak()
   outline(
