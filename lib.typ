@@ -23,6 +23,8 @@
   let main-font = "Liberation Sans"
   let body-size = 11pt
   let heading-size = 12pt
+  let leading = 1.145em // https://forum.typst.app/t/whats-the-equivalent-of-ms-words-1-5-line-spacing/1057/2
+  let spacing = leading + 6pt
 
   // Colors
   let text-color = black
@@ -32,15 +34,15 @@
     font: main-font,
     size: body-size,
     fill: text-color,
-    bottom-edge: "descender",
   )
 
   // Paragraph formatting (no indentation, 6pt spacing)
   set par(
     justify: true,
-    leading: 0.95em, // 1.5 line spacing equivalent
-    spacing: 1em + 6pt, // 6pt between paragraphs as in LaTeX
+    leading: leading,
+    spacing: spacing,
     first-line-indent: 0pt,
+    linebreaks: "optimized",
   )
 
   // Page setup with 2cm margins
@@ -59,7 +61,7 @@
       size: heading-size,
       weight: "bold",
     )
-    show: block.with(above: 1.5em, below: 1.5em, sticky: true)
+    show: block.with(above: spacing, below: spacing, sticky: true)
     it
   }
 
