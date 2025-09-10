@@ -18,7 +18,10 @@
 
   // IU Logo positioned at top right
   if logo != none {
-    place(top + right, dy: -1cm, dx: 1cm, image(logo, width: 4cm))
+    place(top + right, dy: -1cm, dx: 1cm, {
+      set image(width: 4cm)
+      logo
+    })
   }
 
   // Main title page content

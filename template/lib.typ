@@ -10,9 +10,10 @@
   course: "IWSM01",
   tutor: "TBD",
   date: datetime.today(),
-  logo: "iu-logo.png",
+  logo: image("iu-logo.png"),
   show-outline: true,
-  bibliography-file: none,
+  // The result of a call to the `bibliography` function or `none`.
+  bibliography: none,
   body,
 ) = {
   // Document metadata
@@ -95,6 +96,9 @@
     pad(left: 1.27cm, it)
   }
 
+  // Style bibliography.
+  set std.bibliography(title: [Literaturverzeichnis], style: "/apa-iu.csl")
+
   // Title page with Roman numbering
   counter(page).update(1)
   set page(numbering: "I")
@@ -115,16 +119,24 @@
   outline(
     title: [Inhaltsverzeichnis],
   )
-  pagebreak()
-  outline(
-    title: [#heading(outlined: true)[Abbildungsverzeichnis]],
-    target: figure.where(kind: "iu-fig"),
-  )
-  pagebreak()
-  outline(
-    title: [#heading(outlined: true)[Tabellenverzeichnis]],
-    target: figure.where(kind: table),
-  )
+
+  // „Ein Tabellenverzeichnis muss ab drei Tabellen und ein Abbildungsverzeichnis ab drei Abbildungen aufgeführt werden“
+  context {
+    if query(figure.where(kind: "iu-fig")).len() >= 3 {
+      pagebreak()
+      outline(
+        title: [#heading(outlined: true)[Abbildungsverzeichnis]],
+        target: figure.where(kind: "iu-fig"),
+      )
+    }
+    if query(figure.where(kind: table)).len() >= 3 {
+      pagebreak()
+      outline(
+        title: [#heading(outlined: true)[Tabellenverzeichnis]],
+        target: figure.where(kind: table),
+      )
+    }
+  }
   pagebreak()
 
   // Main content with Arabic numbering
@@ -134,11 +146,10 @@
   body
 
   // Bibliography section
-  if bibliography-file != none {
+  if bibliography != none {
     pagebreak()
     set heading(numbering: none)
-    heading([Literaturverzeichnis], level: 1)
-    bibliography(bibliography-file, style: "apa-iu.csl", title: none)
+    bibliography
   }
 }
 

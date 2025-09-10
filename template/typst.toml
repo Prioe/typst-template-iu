@@ -1,0 +1,7 @@
+[package]
+name = "iu"
+version = "0.0.1"
+entrypoint = "lib.typ"
+authors = ["The Typst Project Developers"]
+license = "MIT"
+description = "Calculate elementary arithemtics with functions."
