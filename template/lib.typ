@@ -11,7 +11,6 @@
   tutor: "TBD",
   date: datetime.today(),
   logo: image("iu-logo.png"),
-  show-outline: true,
   // The result of a call to the `bibliography` function or `none`.
   bibliography: none,
   body,
@@ -21,7 +20,7 @@
   set text(lang: "de")
 
   // Font configuration (Arial equivalent - Liberation Sans)
-  let main-font = "Liberation Sans"
+  let main-font = "Arial"
   let body-size = 11pt
   let heading-size = 12pt
   let leading = 1.145em // https://forum.typst.app/t/whats-the-equivalent-of-ms-words-1-5-line-spacing/1057/2
