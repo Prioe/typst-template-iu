@@ -1,76 +1,48 @@
-// IU-specific title page function
 #let iu-titlepage(
   title: none,
-  subtitle: none,
   author: none,
   student-id: none,
   program: "Informatik (B.Sc.)",
   course: "IWSM01",
   tutor: "TBD",
+  doc-type: "Hausarbeit",
   date: datetime.today(),
   logo: none,
 ) = {
-  // Title page specific layout
-  set page(
-    margin: (top: 2cm, left: 2cm, right: 2cm, bottom: 2cm),
-    numbering: none,
-  )
+  set page(numbering: none)
 
-  // IU Logo positioned at top right
   if logo != none {
-    place(top + right, dy: -1cm, dx: 1cm, {
-      set image(width: 4cm)
+    place(top + right, {
+      set image(width: 4.5cm)
       logo
     })
   }
 
-  // Main title page content
-  align(center)[
-    #v(6cm)
+  v(3.6cm)
 
-    // Main title - large and bold
-    #text(size: 24pt, weight: "bold")[
-      #title
-    ]
+  align(center+horizon, {
+    // \huge\bf
+    text(size: 21pt, weight: "bold")[#title]
 
-    #if subtitle != none [
-      #v(0.5cm)
-      #text(size: 16pt)[#subtitle]
-    ]
+    v(1.3cm)
 
-    #v(2cm)
+    doc-type
 
-    // Document type
-    #text(size: 14pt)[
-      Hausarbeit
-    ]
+    v(1cm)
 
-    #v(2cm)
+    // \large\bf
+    text(size: 12pt, weight: "bold")[#author (#student-id)]
 
-    // Author information
-    #text(size: 14pt, weight: "bold")[
-      #author (#student-id)
-    ]
+    v(0.95cm)
 
-    #v(1cm)
-
-    // Program and course information
-    #text(size: 12pt)[
+    [
       #program \
       #course \
-      #date.display("[day].[month].[year]")
+      #date.display("[day]. [month repr:long]. [year]")
     ]
 
-    #v(3cm)
+    v(3cm)
 
-    // Tutor information in a table
-    #align(center)[
-      #table(
-        columns: 2,
-        stroke: none,
-        align: left,
-        [Tutorin:], [#tutor],
-      )
-    ]
-  ]
+    [Tutor:in:#h(1cm) #tutor]
+  })
 }

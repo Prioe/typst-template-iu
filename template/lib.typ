@@ -3,7 +3,6 @@
 // Main IU Paper Template Function
 #let iu-paper(
   title: none,
-  subtitle: none,
   author: none,
   student-id: none,
   program: "Informatik (B.Sc.)",
@@ -104,7 +103,6 @@
 
   iu-titlepage(
     title: title,
-    subtitle: subtitle,
     author: author,
     student-id: student-id,
     program: program,
