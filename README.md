@@ -1,148 +1,50 @@
-# IU Papers - Typst Templates
+# typst-template-iu
 
-This repository provides Typst templates for IU (Internationale Hochschule) academic papers, converted from the original LaTeX templates.
+This is a Typst template for IU (Internationale Hochschule) academic papers with
+IU-compliant formatting, German language support, and APA bibliography style.
 
-## Directory Structure
+## Usage
 
-```
-.
-├── lib.typ              # Main IU paper template
-├── titlepage.typ        # IU-specific title page
-├── references.bib       # Shared bibliography file
-├── iu-logo.png         # IU logo (add manually)
-├── iwsm01/
-│   ├── main.typ        # IWSM01 assignment
-│   └── references.bib  # Assignment bibliography
-├── dlbingdabd01/
-│   ├── main.typ        # Data Science assignment
-│   └── references.bib  # Assignment bibliography
-└── examples/           # Original examples and references
-```
+> Proper installation is not yet supported. Clone this repository to
+> `~/.local/share/typst/packages/local/iu/0.0.1` for the example usage to work.
 
-## Features
+Alternatively, clone this repository and customize the template in the
+`template/` directory.
 
-- **IU-compliant formatting**: Matches official IU paper requirements
-- **German language support**: Proper hyphenation and localization
-- **Font configuration**: Arial/Liberation Sans, 11pt body, 12pt headings
-- **Layout**: A4 with 2cm margins, 1.5 line spacing, 6pt paragraph spacing
-- **Automatic page numbering**: Roman for preliminaries, Arabic for content
-- **German captions**: Abb./Tab. abbreviations
-- **APA bibliography**: Integrated citation support
-- **Modular design**: Shared template, individual assignments
+## Configuration
 
-## Quick Start
+This template exports the `iu-paper` function with the following named
+arguments:
 
-### 1. Add IU Logo
+- `title`: The paper's title as content.
+- `author`: The author's name as content.
+- `student-id`: Student ID as content.
+- `program`: Study program (defaults to "Informatik (B.Sc.)").
+- `course`: Course code (defaults to "IWSM01").
+- `tutor`: Tutor name (defaults to "TBD").
+- `date`: Date as datetime (defaults to today).
+- `logo`: IU logo as image (defaults to image("iu-logo.png")).
+- `bibliography`: The result of a call to the `bibliography` function or `none`.
 
-Place your IU logo as `iu-logo.png` in the root directory.
+The function also accepts a single, positional argument for the body of the
+paper.
 
-### 2. Create New Assignment
+The template will initialize your package with a sample call to the `iu-paper`
+function in a show rule. If you want to change an existing project to use this
+template, you can add a show rule like this at the top of your file:
 
-```bash
-mkdir my-assignment
-cp iwsm01/main.typ my-assignment/
-```
-
-### 3. Customize Assignment
-
-Edit `my-assignment/main.typ`:
-
-```typst
-#import "../lib.typ": iu-paper, source-caption
+```typ
+#import "@local/iu:0.0.1": iu-paper, iu-figure
 
 #show: iu-paper.with(
-  title: "Your Assignment Title",
-  author: "Your Name",
-  student-id: "Your Student ID",
-  course: "Course Code",
-  tutor: "Tutor Name",
-  logo: "../iu-logo.png",
-  bibliography-file: "../references.bib",
+  title: [Ein Satzsystem zur Entwirrung des wissenschaftlichen Schreibprozesses],
+  author: "Max Mustermann",
+  student-id: "123456789",
+  program: "Informatik",
+  course: "INF101",
+  tutor: "Dr. Anna Schmidt",
+  bibliography: bibliography("refs.bib"),
 )
 
-= Your First Section
-
-Your content here...
+// Your content goes below.
 ```
-
-### 4. Compile
-
-```bash
-# From repository root
-typst compile --root . my-assignment/main.typ
-
-# Or from assignment directory
-cd my-assignment
-typst compile --root .. main.typ
-```
-
-## Available Templates
-
-### IWSM01 - General Project
-
-- Standard academic paper structure
-- Suitable for most IWSM01 assignments
-- Located in `iwsm01/main.typ`
-
-### DLBINGDABD01 - Data Science & Big Data Analytics
-
-- Specialized sections for data science projects
-- Includes methodology, data analysis, and evaluation sections
-- Located in `dlbingdabd01/main.typ`
-
-## Template Features
-
-### Typography
-
-- **Main font**: Liberation Sans (Arial fallback)
-- **Body text**: 11pt with 1.5 line spacing
-- **Headings**: 12pt bold with proper spacing
-- **Paragraphs**: 6pt spacing, no indentation
-
-### Document Structure
-
-- **Title page**: IU logo, student info, course details
-- **Table of contents**: Automatic generation
-- **Bibliography**: APA style with German adaptations
-- **Appendix**: Structured additional materials
-
-### Special Commands
-
-- `source-caption(source)`: Add source attribution below figures
-- German figure/table numbering (Abb./Tab.)
-- Block quotes with 1.27cm indentation
-
-## Adding Citations
-
-Add entries to `references.bib`:
-
-```bibtex
-@article{author2023,
-  title={Article Title},
-  author={Author, A.},
-  journal={Journal Name},
-  year={2023}
-}
-```
-
-Cite in document:
-
-```typst
-According to @author2023, ...
-```
-
-## Requirements
-
-- Typst compiler (0.11+)
-- Liberation Sans or Arial font
-- IU logo image file
-
-## Credits
-
-- **Original LaTeX template**: Markus Haug
-- **Pandoc adaptation**: Michael Albertz
-- **Typst conversion**: Claude Code Assistant
-
-## License
-
-Feel free to share and modify this template, but please give credit where it's due.
