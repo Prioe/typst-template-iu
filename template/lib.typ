@@ -14,45 +14,42 @@
   bibliography: none,
   body,
 ) = {
-  // Document metadata
   set document(title: title, author: author)
   set text(lang: "de")
 
-  // Font configuration (Arial equivalent - Liberation Sans)
-  let main-font = "Arial"
-  let body-size = 11pt
-  let heading-size = 12pt
-  let leading = 1.145em // https://forum.typst.app/t/whats-the-equivalent-of-ms-words-1-5-line-spacing/1057/2
-  let spacing = leading + 6pt
+  let main-font = "Arial" // Alternative: "Liberation Sans"
+  let body-size = 11pt // iu-requirement: 11pt
+  let heading-size = 12pt // iu-requirement: 12pt
+  // https://practicaltypography.com/line-spacing.html -> 1.5 line spacing -> 175%
+  let leading = 0.75em // iu-requirement: 1.5 line spacing
+  let spacing = leading + 6pt // iu-requirement: 6pt spacing between paragraphs
 
-  // Colors
   let text-color = black
 
-  // Basic text setup
   set text(
     font: main-font,
     size: body-size,
     fill: text-color,
+    // Emulate Word's line spacing: https://github.com/typst/typst/issues/4224#issuecomment-2755913480
+    top-edge: 1em, 
+    bottom-edge: 0em
   )
 
-  // Paragraph formatting (no indentation, 6pt spacing)
   set par(
-    justify: true,
+    justify: true, // iu-requirement: justified
     leading: leading,
     spacing: spacing,
     first-line-indent: 0pt,
     linebreaks: "optimized",
   )
 
-  // Page setup with 2cm margins
   set page(
     paper: "a4",
-    margin: (top: 2cm, left: 2cm, right: 2cm, bottom: 2cm),
+    margin: (top: 2cm, left: 2cm, right: 2cm, bottom: 2cm), // iu-requirement: 2cm margins
     numbering: none, // Will be set per section
     number-align: center,
   )
 
-  // Heading configuration (12pt, bold)
   set heading(numbering: "1.1")
   show heading: it => {
     set text(
@@ -68,9 +65,10 @@
   set figure(numbering: "1")
   set figure.caption(position: top, separator: [ ])
 
-  show figure.where(kind: image): set figure(supplement: [Abb.], kind: "iu-fig")
-  show figure.where(kind: raw): set figure(supplement: [Abb.], kind: "iu-fig")
-  show figure.where(kind: table): set figure(supplement: [Tab.])
+  show figure.where(kind: image): set figure(supplement: [Abb.], gap: leading)
+  show figure.where(kind: raw): set figure(supplement: [Abb.], gap: leading)
+  show figure.where(kind: "iu-figure"): set figure(supplement: [Abb.], gap: leading)
+  show figure.where(kind: table): set figure(supplement: [Tab.], gap: leading)
 
   // Default table style
   show table.cell.where(y: 0): strong
@@ -83,18 +81,13 @@
     ),
   )
 
+  show footnote.entry: set text(size: 10pt) // iu-requirement: 10pt for footnotes
 
-  // show outline: set outline(indent: 0em)
+  show quote.where(block: true): set pad(left: 1.27cm) // iu-requirement: 1.27cm indent for block quotes
+
   set outline(indent: auto)
   set outline.entry(fill: repeat([.], gap: 0.25em))
-  // set outline.entry(fill: line(length: 100%))
 
-  // Block quotes with 1.27cm left indentation
-  show quote.where(block: true): it => {
-    pad(left: 1.27cm, it)
-  }
-
-  // Style bibliography.
   set std.bibliography(title: [Literaturverzeichnis], style: "/apa-iu.csl")
 
   // Title page with Roman numbering
@@ -159,14 +152,14 @@
     {
       body
       if source-caption != none {
-        v(-0.65em)
+        v(-0.75em)
         align(
           center,
           source-caption,
         )
       }
     },
-    // kind: "iu-fig",
+    kind: "iu-figure",
     caption: caption,
   )
 }
