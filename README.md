@@ -48,3 +48,24 @@ template, you can add a show rule like this at the top of your file:
 
 // Your content goes below.
 ```
+
+## Disclaimer
+
+This template is provided without guarantee or warranty. The author assumes no
+responsibility for the accuracy or reliability of the information contained in
+this template or for the consequences of its use. Please use it at your own risk
+and responsibility.
+
+**Note**: This is an open source project created by IU International University
+students. There is no official affiliation with or endorsement by IU
+International University.
+
+## Contributions
+
+Contribution to this template is highly welcome. Please open a pull-request with
+your proposed changes and do not forget to assign me, so that I get notified.
+
+## Licence
+
+This template is licensed under the MIT Licence. See the [LICENSE](LICENSE) file
+for more information.
