@@ -2,6 +2,9 @@
 name = "iu"
 version = "0.0.1"
 entrypoint = "lib.typ"
-authors = ["The Typst Project Developers"]
+authors = ["Michael Albertz"]
 license = "MIT"
-description = "Calculate elementary arithemtics with functions."
+description = "Template for academic papers at the IU International University."
+
+homepage = "https://github.com/Prioe/typst-template-iu"
+repository = "https://github.com/Prioe/typst-template-iu"
