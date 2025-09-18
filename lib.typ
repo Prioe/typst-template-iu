@@ -70,6 +70,9 @@
   show figure.where(kind: "iu-figure"): set figure(supplement: [Abb.], gap: leading)
   show figure.where(kind: table): set figure(supplement: [Tab.], gap: leading)
 
+  set math.equation(numbering: "1", supplement: [Gl.]) // iu-requirement: Not specified, set to match figures/tables
+  set heading(supplement: [Kap.]) // iu-requirement: Not specified, set to match figures/tables
+
   // Default table style
   show table.cell.where(y: 0): strong
   set table(
@@ -112,11 +115,11 @@
 
   // „Ein Tabellenverzeichnis muss ab drei Tabellen und ein Abbildungsverzeichnis ab drei Abbildungen aufgeführt werden“
   context {
-    if query(figure.where(kind: "iu-fig")).len() >= 3 {
+    if query(figure.where(kind: "iu-figure")).len() >= 3 {
       pagebreak()
       outline(
         title: [#heading(outlined: true)[Abbildungsverzeichnis]],
-        target: figure.where(kind: "iu-fig"),
+        target: figure.where(kind: "iu-figure"),
       )
     }
     if query(figure.where(kind: table)).len() >= 3 {
