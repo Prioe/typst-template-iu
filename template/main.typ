@@ -1,28 +1,58 @@
 #import "@local/iu:0.0.1": iu-figure, iu-paper
 
 #show: iu-paper.with(
-  title: [A Typesetting System to Untangle the Scientific Writing Process],
-  author: "John Doe",
+  title: [Ein Satzsystem zur Entwirrung des wissenschaftlichen
+    Schreibprozesses],
+  author: "Max Mustermann",
   student-id: "123456789",
-  program: "Computer Science",
-  course: "CS101",
-  tutor: "Jane Smith",
+  program: "Informatik",
+  course: "INF101",
+  tutor: "Dr. Anna Schmidt",
   bibliography: bibliography("refs.bib"),
 )
 
-= Introduction
-Scientific writing is a crucial part of the research process, allowing researchers to share their findings with the wider scientific community. However, the process of typesetting scientific documents can often be a frustrating and time-consuming affair, particularly when using outdated tools such as LaTeX. Despite being over 30 years old, it remains a popular choice for scientific writing due to its power and flexibility. However, it also comes with a steep learning curve, complex syntax, and long compile times, leading to frustration and despair for many researchers @netwok2020 @netwok2022.
+= Einleitung
+Wissenschaftliches Schreiben ist ein entscheidender Bestandteil des
+Forschungsprozesses und ermöglicht es Forschern, ihre Erkenntnisse mit der
+breiteren wissenschaftlichen Gemeinschaft zu teilen. Der Satzprozess
+wissenschaftlicher Dokumente kann jedoch oft eine frustrierende und
+zeitaufwändige Angelegenheit sein, insbesondere bei der Verwendung veralteter
+Werkzeuge wie LaTeX. Obwohl es über 30 Jahre alt ist, bleibt es aufgrund seiner
+Leistungsfähigkeit und Flexibilität eine beliebte Wahl für wissenschaftliches
+Schreiben. Es bringt jedoch auch eine steile Lernkurve, komplexe Syntax und
+lange Kompilierzeiten mit sich, was bei vielen Forschern zu Frustration und
+Verzweiflung führt @netwok2020 @netwok2022.
 
-== Paper overview
-In this paper we introduce Typst, a new typesetting system designed to streamline the scientific writing process and provide researchers with a fast, efficient, and easy-to-use alternative to existing systems. Our goal is to shake up the status quo and offer researchers a better way to approach scientific writing.
+== Überblick über die Arbeit
+In dieser Arbeit stellen wir Typst vor, ein neues Satzsystem, das darauf
+ausgelegt ist, den wissenschaftlichen Schreibprozess zu optimieren und Forschern
+eine schnelle, effiziente und benutzerfreundliche Alternative zu bestehenden
+Systemen zu bieten. Unser Ziel ist es, den Status quo zu erschüttern und
+Forschern einen besseren Weg für wissenschaftliches Schreiben anzubieten.
 
-By leveraging advanced algorithms and a user-friendly interface, Typst offers several advantages over existing typesetting systems, including faster document creation, simplified syntax, and increased ease-of-use.
+Durch den Einsatz fortschrittlicher Algorithmen und einer benutzerfreundlichen
+Oberfläche bietet Typst mehrere Vorteile gegenüber bestehenden Satzsystemen,
+einschließlich schnellerer Dokumentenerstellung, vereinfachter Syntax und
+erhöhter Benutzerfreundlichkeit.
 
-To demonstrate the potential of Typst, we conducted a series of experiments comparing it to other popular typesetting systems, including LaTeX. Our findings suggest that Typst offers several benefits for scientific writing, particularly for novice users who may struggle with the complexities of LaTeX. Additionally, we demonstrate that Typst offers advanced features for experienced users, allowing for greater customization and flexibility in document creation.
+Um das Potenzial von Typst zu demonstrieren, haben wir eine Reihe von
+Experimenten durchgeführt, die es mit anderen beliebten Satzsystemen,
+einschließlich LaTeX, vergleichen. Unsere Ergebnisse deuten darauf hin, dass
+Typst mehrere Vorteile für wissenschaftliches Schreiben bietet, insbesondere für
+Anfänger, die möglicherweise mit den Komplexitäten von LaTeX kämpfen. Zusätzlich
+zeigen wir, dass Typst erweiterte Funktionen für erfahrene Benutzer bietet, die
+eine größere Anpassung und Flexibilität bei der Dokumentenerstellung
+ermöglichen.
 
-Overall, we believe that Typst represents a significant step forward in the field of scientific writing and typesetting, providing researchers with a valuable tool to streamline their workflow and focus on what really matters: their research. In the following sections, we will introduce Typst in more detail and provide evidence for its superiority over other typesetting systems in a variety of scenarios.
+Insgesamt glauben wir, dass Typst einen bedeutenden Schritt nach vorne im
+Bereich des wissenschaftlichen Schreibens und Satzes darstellt und Forschern ein
+wertvolles Werkzeug zur Optimierung ihres Arbeitsablaufs bietet, damit sie sich
+auf das konzentrieren können, was wirklich wichtig ist: ihre Forschung. In den
+folgenden Abschnitten werden wir Typst detaillierter vorstellen und Belege für
+seine Überlegenheit gegenüber anderen Satzsystemen in verschiedenen Szenarien
+liefern.
 
-= Methods <sec:methods>
+= Methoden <sec:methods>
 #lorem(45)
 
 $ a + b = gamma $ <eq:gamma>
@@ -31,11 +61,12 @@ $ a + b = gamma $ <eq:gamma>
 
 #iu-figure(
   circle(radius: 15pt),
-  caption: [A circle representing the Sun.],
+  caption: [Ein Kreis, der die Sonne darstellt.],
   source-caption: [Quelle: Eigene Darstellung],
 ) <fig:sun>
 
-In @fig:sun you can see a common representation of the Sun, which is a star that is located at the center of the solar system.
+In @fig:sun sehen Sie eine übliche Darstellung der Sonne, die ein Stern ist, der
+sich im Zentrum des Sonnensystems befindet.
 
 #lorem(120)
 
@@ -44,22 +75,24 @@ In @fig:sun you can see a common representation of the Sun, which is a star that
     columns: (6em, auto),
     align: (left, right),
 
-    table.header[Planet][Distance (million km)],
-    [Mercury], [57.9],
-    [Venus], [108.2],
-    [Earth], [149.6],
-    [Mars], [227.9],
-    [Jupiter], [778.6],
-    [Saturn], [1,433.5],
-    [Uranus], [2,872.5],
-    [Neptune], [4,495.1],
+    table.header[Planet][Entfernung (Millionen km)],
+    [Merkur], [57,9],
+    [Venus], [108,2],
+    [Erde], [149,6],
+    [Mars], [227,9],
+    [Jupiter], [778,6],
+    [Saturn], [1.433,5],
+    [Uranus], [2.872,5],
+    [Neptun], [4.495,1],
   ),
-  caption: [The Planets of the Solar System and Their Average Distance from the Sun],
+  caption: [Die Planeten des Sonnensystems und ihre durchschnittliche Entfernung
+    zur Sonne],
   source-caption: [Quelle: Eigene Darstellung],
 ) <tab:planets>
 
-In @tab:planets, you see the planets of the solar system and their average distance from the Sun.
-The distances were calculated with @eq:gamma that we presented in @sec:methods.
+In @tab:planets sehen Sie die Planeten des Sonnensystems und ihre
+durchschnittliche Entfernung zur Sonne. Die Entfernungen wurden mit @eq:gamma
+berechnet, die wir in @sec:methods vorgestellt haben.
 
 #lorem(240)
 
@@ -69,7 +102,7 @@ The distances were calculated with @eq:gamma that we presented in @sec:methods.
     rect(0pt, 0pt, 100pt, 50pt, fill: lightgray, stroke: black)
   )
   ```,
-  caption: [Drawing a rectangle],
+  caption: [Zeichnen eines Rechtecks],
   source-caption: [Quelle: Eigene Darstellung],
 )
 

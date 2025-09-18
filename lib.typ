@@ -31,8 +31,8 @@
     size: body-size,
     fill: text-color,
     // Emulate Word's line spacing: https://github.com/typst/typst/issues/4224#issuecomment-2755913480
-    top-edge: 1em, 
-    bottom-edge: 0em
+    top-edge: 1em,
+    bottom-edge: 0em,
   )
 
   set par(
@@ -67,7 +67,10 @@
 
   show figure.where(kind: image): set figure(supplement: [Abb.], gap: leading)
   show figure.where(kind: raw): set figure(supplement: [Abb.], gap: leading)
-  show figure.where(kind: "iu-figure"): set figure(supplement: [Abb.], gap: leading)
+  show figure.where(kind: "iu-figure"): set figure(
+    supplement: [Abb.],
+    gap: leading,
+  )
   show figure.where(kind: table): set figure(supplement: [Tab.], gap: leading)
 
   set math.equation(numbering: "1", supplement: [Gl.]) // iu-requirement: Not specified, set to match figures/tables

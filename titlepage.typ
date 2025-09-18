@@ -20,7 +20,7 @@
 
   v(3.6cm)
 
-  align(center+horizon, {
+  align(center + horizon, {
     // \huge\bf
     text(size: 21pt, weight: "bold")[#title]
 
